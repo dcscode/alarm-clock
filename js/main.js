@@ -11,11 +11,11 @@ let inputDateValue = "";
 setInterval(currentRunningTime, 1000);
 
 inputTime.addEventListener("input", () => {
-    let inputTimeValue = inputTime.value;
+    inputTimeValue = inputTime.value;
 });
 
 inputDate.addEventListener("input", () => {
-    let inputDateValue = inputDate.value;
+    inputDateValue = inputDate.value;
 });
 
 let inputDateTimeString = inputDateValue + " " + inputTimeValue;
