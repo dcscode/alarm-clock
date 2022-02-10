@@ -6,22 +6,20 @@ let inputTime = document.getElementById('alarm-time');
 let inputTimeValue = "";
 let inputDate = document.getElementById('alarm-date');
 let inputDateValue = "";
+let alarmObject = null;
 
 
 setInterval(currentRunningTime, 1000);
 
-inputTime.addEventListener("input", () => {
-    inputTimeValue = inputTime.value;
+inputTime.addEventListener("input", (e) => {
+    console.log(e);
+    inputTimeValue = e.target.value;
 });
 
-inputDate.addEventListener("input", () => {
-    inputDateValue = inputDate.value;
+inputDate.addEventListener("input", (e) => {
+    inputDateValue = e.target.value;
+    alarmObject = new Date(inputDateValue, inputTimeValue);
 });
-
-let inputDateTimeString = inputDateValue + " " + inputTimeValue;
-let alarmObject = new Date(inputDateValue, inputTimeValue);
-let rightNow = new Date();
-let alarmInterval = alarmObject - rightNow;
 
 
 function currentRunningTime(){
@@ -30,6 +28,8 @@ function currentRunningTime(){
     timeDisplay.textContent = dateAndTime;
     timeDisplay.setAttribute("datetime", dateAndTime);
     timeContainer.appendChild(timeDisplay);
+    //if alarm object != null
+    //if alarm time is <= current time, do something
     }
 
 
