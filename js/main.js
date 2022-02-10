@@ -3,7 +3,17 @@
 let timeDisplay = document.querySelector('time');
 let timeContainer = document.getElementById('container');
 
-let currentTime = new Date();
+setInterval(currentRunningTime, 1000);
+
+function currentRunningTime(){
+    let currentTime = new Date();
+    let dateAndTime = currentTime.toLocaleString();
+    timeDisplay.textContent = dateAndTime;
+    timeDisplay.setAttribute("datetime", dateAndTime);
+    timeContainer.appendChild(timeDisplay);
+    }
+
+/* original attempt
 let hour = currentTime.getHours();
 let minutes = currentTime.getMinutes();
 let seconds = currentTime.getSeconds();
@@ -15,3 +25,4 @@ let timeFromObject = year + "-" + month + "-" + day + " " + hour + ":" + minutes
 timeDisplay.textContent = timeFromObject;
 timeDisplay.setAttribute("datetime", timeFromObject);
 timeContainer.appendChild(timeDisplay);
+*/
