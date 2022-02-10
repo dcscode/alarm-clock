@@ -11,17 +11,17 @@ let inputDateValue = "";
 setInterval(currentRunningTime, 1000);
 
 inputTime.addEventListener("input", () => {
-    inputTimeValue = inputTime.value; 
-})
+    let inputTimeValue = inputTime.value;
+});
 
 inputDate.addEventListener("input", () => {
-    inputDateValue = inputDate.value;
-})
+    let inputDateValue = inputDate.value;
+});
 
 let inputDateTimeString = inputDateValue + " " + inputTimeValue;
-let alarmObject = new Date(inoutDataTimeString);
-
-
+let alarmObject = new Date(inputDateValue, inputTimeValue);
+let rightNow = new Date();
+let alarmInterval = alarmObject - rightNow;
 
 
 function currentRunningTime(){
