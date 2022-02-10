@@ -2,8 +2,27 @@
 
 let timeDisplay = document.querySelector('time');
 let timeContainer = document.getElementById('container');
+let inputTime = document.getElementById('alarm-time');
+let inputTimeValue = "";
+let inputDate = document.getElementById('alarm-date');
+let inputDateValue = "";
+
 
 setInterval(currentRunningTime, 1000);
+
+inputTime.addEventListener("input", () => {
+    inputTimeValue = inputTime.value; 
+})
+
+inputDate.addEventListener("input", () => {
+    inputDateValue = inputDate.value;
+})
+
+let inputDateTimeString = inputDateValue + " " + inputTimeValue;
+let alarmObject = new Date(inoutDataTimeString);
+
+
+
 
 function currentRunningTime(){
     let currentTime = new Date();
@@ -12,6 +31,7 @@ function currentRunningTime(){
     timeDisplay.setAttribute("datetime", dateAndTime);
     timeContainer.appendChild(timeDisplay);
     }
+
 
 /* original attempt
 let hour = currentTime.getHours();
