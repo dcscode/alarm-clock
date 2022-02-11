@@ -2,7 +2,10 @@
 
 let timeDisplay = document.querySelector('time');
 let timeContainer = document.getElementById('container');
+let alarmDisplay = document.getElementById('alarm-alert');
+let para = document.createElement('p');
 let inputTime = document.getElementById('alarm-time');
+let setAlarmButton = document.querySelector('button');
 let inputTimeValue = "";
 let inputDate = document.getElementById('alarm-date');
 let inputDateValue = "";
@@ -20,9 +23,14 @@ inputTime.addEventListener("input", (e) => {
 
 inputDate.addEventListener("input", (e) => {
     inputDateValue = e.target.value;
-    alarmObject = new Date(inputDateValue + " " + inputTimeValue);
+    
 });
 
+setAlarmButton.addEventListener('click', (e) => {
+    alarmObject = new Date(inputDateValue + " " + inputTimeValue);
+    para.textContent = "alarm set";
+    alarmDisplay.appendChild(para);
+})
 
 function currentRunningTime(){
     let currentTime = new Date();
@@ -35,17 +43,17 @@ function currentRunningTime(){
     }
     if (alarmInterval !== null && alarmInterval <= currentTime.getTime()){
         alarmTimeOut = setTimeout(runAlarm, alarmInterval);
-        if (currentTime.getTime() > alarmObject.getTime() + 2000) {
+        if (currentTime.getTime() > alarmObject.getTime()) {
             clearTimeout(alarmTimeOut);
         }
     }
+}
     
 
     function runAlarm(){
-        alert("this is your alarm");
-        
-    }
-}
+        para.textContent = "Your alarm!";
+        alarmDisplay.appendChild(para);
+        }
 
     function stopAlarm(){
         clearTimeout(alarmTimeOut);
