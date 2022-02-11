@@ -7,18 +7,19 @@ let inputTimeValue = "";
 let inputDate = document.getElementById('alarm-date');
 let inputDateValue = "";
 let alarmObject = null;
+let alarmInterval = null;
+let alarmTimeOut = null;
 
 
 setInterval(currentRunningTime, 1000);
 
 inputTime.addEventListener("input", (e) => {
-    console.log(e);
     inputTimeValue = e.target.value;
 });
 
 inputDate.addEventListener("input", (e) => {
     inputDateValue = e.target.value;
-    alarmObject = new Date(inputDateValue, inputTimeValue);
+    alarmObject = new Date(inputDateValue + " " + inputTimeValue);
 });
 
 
@@ -28,10 +29,23 @@ function currentRunningTime(){
     timeDisplay.textContent = dateAndTime;
     timeDisplay.setAttribute("datetime", dateAndTime);
     timeContainer.appendChild(timeDisplay);
-    //if alarm object != null
-    //if alarm time is <= current time, do something
+    if (alarmObject !== null){
+        alarmInterval = alarmObject.getTime() - currentTime.getTime();
+    }
+    if (alarmInterval !== null && alarmInterval <= currentTime.getTime()){
+        alarmTimeOut = setTimeout(runAlarm, alarmInterval);
+    }
+    
     }
 
+    function runAlarm(){
+            alert("this is your alarm");
+        
+    }
+
+    function stopAlarm(){
+        clearTimeout(alarmTimeOut);
+    }
 
 /* original attempt
 let hour = currentTime.getHours();
