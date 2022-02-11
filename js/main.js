@@ -13,6 +13,7 @@ let alarmTimeOut = null;
 
 setInterval(currentRunningTime, 1000);
 
+
 inputTime.addEventListener("input", (e) => {
     inputTimeValue = e.target.value;
 });
@@ -34,14 +35,17 @@ function currentRunningTime(){
     }
     if (alarmInterval !== null && alarmInterval <= currentTime.getTime()){
         alarmTimeOut = setTimeout(runAlarm, alarmInterval);
+        if (currentTime.getTime() > alarmObject.getTime() + 2000) {
+            clearTimeout(alarmTimeOut);
+        }
     }
     
-    }
 
     function runAlarm(){
-            alert("this is your alarm");
+        alert("this is your alarm");
         
     }
+}
 
     function stopAlarm(){
         clearTimeout(alarmTimeOut);
